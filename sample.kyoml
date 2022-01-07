@@ -1,0 +1,46 @@
+values {
+  @userinput
+
+  system_name = "pat-system"
+  image = "hashicorp/http-echo"
+  tag = "latest"
+}
+
+base_template {
+  spec {
+    containers = [{
+      "name": "${values.image}",
+      "image": "${values.image}:${values.tag}",
+      "ports": [
+        { "containerPort": 80 }
+      ]
+    }]
+  }
+}
+
+base_deployment {
+  metadata {
+    labels {
+      system = "${values.system_name}"
+    }
+  }
+
+  spec {
+    replicas = 3
+
+    template {
+      @extend("base_template")
+    }
+  }
+}
+
+myapp {
+  @kind("deployment")
+  @extend("base_deployment")
+
+  spec {
+    replicas = 1
+  }
+}
+
+
