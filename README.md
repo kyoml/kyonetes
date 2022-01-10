@@ -7,7 +7,7 @@
 
 ## Concept
 
-This is an attempt at using [KyoML](kyoml.com) to generate Kubernetes manifests.
+This is an attempt at using [KyoML](https://kyoml.com) to generate Kubernetes manifests.
 KyoML is a dynamic markup language with support for custom directives and plugins.
 
 Through the use of custom `@directives`, this will generate a K8s compatible yaml file
